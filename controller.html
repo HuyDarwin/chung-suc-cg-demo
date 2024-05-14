@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Controller</title>
+	
+        <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+        <script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="JS/jquery.keyframes.min.js"></script>
+        <script type='module' src='JS/firebase.js'></script>	
+        <script type='module' src='JS/functions.js'></script>		
+        <script type="module" src="JS/controller_fb.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="CSS/reset.css">
+        <link rel="stylesheet" type="text/css" href="CSS/site.css">
+        <link rel="stylesheet" type="text/css" href="CSS/site_controller.css">
+
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <img id="bg" src="img/controller_bg.png"/>
+
+        <div class="holder" id="holder-1">
+            <button id="h1-obj1">NONE</button>
+            <button id="h1-obj2">MAIN</button>
+            <button id="h1-obj3">BONUS ROUND</button>
+            <button id="h1-obj4">BONUS ROUND (CAM)</button>
+            <button id="h1-obj5">TIMER</button>
+            <button id="h1-obj10">SCORE</button>
+            <button id="h1-obj6">TITLES</button>
+            <a id="h1-obj7" href="index.html" target="_blank">INDEX</a>
+            <a id="h1-obj11" href="timer.html" target="_blank">TIMER</a>
+            <a id="h1-obj12" href="screen.html" target="_blank">SCREEN</a>
+            <button id="h1-obj8">RELOAD</button>
+            <button id="h1-obj9">RESET DATA</button>
+        </div>
+
+        <div class="holder" id="holder-2">
+            <label style="left:1%;top:2%">Get Questions File (XLSX):</label>
+            <input type='file' id='get-qs' style='top:0.5%;left:45%;width:50%;height:6%;' accept=".xls,.xlsx,.ods"></input>
+            <label style="left:1%;top:9%">Get Contestants File (XLSX):</label>
+            <input type='file' id='get-cs' style='top:8.5%;left:45%;width:50%;height:6%;' accept=".xls,.xlsx,.ods"></input>
+
+            <div class="team-info" id="team-info-1">
+                <label style="left:0%;top:3%;">Team 1:</label>
+                <textarea disabled class="team-name"></textarea>
+                <textarea disabled class="team-score"></textarea>
+                <textarea class="team-score-fix" placeholder="Score"></textarea>
+                <button class="team-score-fix-submit" id="tsfs1">Update</button>
+
+                <textarea disabled class="team-player-name" id="team-player-name-1"></textarea>
+                <textarea disabled class="team-player-info" id="team-player-info-1"></textarea>
+
+                <textarea disabled class="team-player-name" id="team-player-name-2"></textarea>
+                <textarea disabled class="team-player-info" id="team-player-info-2"></textarea>
+
+                <textarea disabled class="team-player-name" id="team-player-name-3"></textarea>
+                <textarea disabled class="team-player-info" id="team-player-info-3"></textarea>
+
+                <textarea disabled class="team-player-name" id="team-player-name-4"></textarea>
+                <textarea disabled class="team-player-info" id="team-player-info-4"></textarea>
+            </div>
+
+            <div class="team-info" id="team-info-2">
+                <label style="left:0%;top:3%;">Team 2:</label>
+                <textarea disabled class="team-name"></textarea>
+                <textarea disabled class="team-score"></textarea>
+                <textarea class="team-score-fix" placeholder="Score"></textarea>
+                <button class="team-score-fix-submit" id="tsfs2">Update</button>
+
+                <textarea disabled class="team-player-name" id="team-player-name-1"></textarea>
+                <textarea disabled class="team-player-info" id="team-player-info-1"></textarea>
+
+                <textarea disabled class="team-player-name" id="team-player-name-2"></textarea>
+                <textarea disabled class="team-player-info" id="team-player-info-2"></textarea>
+
+                <textarea disabled class="team-player-name" id="team-player-name-3"></textarea>
+                <textarea disabled class="team-player-info" id="team-player-info-3"></textarea>
+                
+                <textarea disabled class="team-player-name" id="team-player-name-4"></textarea>
+                <textarea disabled class="team-player-info" id="team-player-info-4"></textarea>
+            </div>
+        </div>
+
+        <div class="holder" id="holder-3">
+            <div class="h3-hold" id="h3-hold-0">
+                <button class="timer" id="timer-20">20 Seconds</button>
+                <button class="timer" id="timer-25">25 Seconds</button>
+            </div>
+
+            <div class="h3-hold" id="h3-hold-1">
+                <label style="left:1%;top:2%;">Playing:</label>
+                <button id="h3-1-obj1"></button>
+
+                <label style="left:38%;top:2%;">Add to Total:</label>
+                <input type="checkbox" style="left:53%;top:2%;" id="is-adding-to-total"></input>
+
+                <label style="left:58%;top:2%;">x2:</label>
+                <input type="checkbox" style="left:62%;top:2%;" id="is-doubling"></input>
+
+                <label style="left:67%;top:2%;">x3:</label>
+                <input type="checkbox" style="left:71%;top:2%;" id="is-tripling"></input>
+
+                <label style="left:1%;top:12%;">Question:</label>
+                <textarea id="q-text" disabled></textarea>
+                <label style="left:65%;top:12%;">Number of Answers:</label>
+                <textarea id="num-ans" disabled></textarea>
+
+                <div class="ans" id="ans-1">
+                    <textarea class="ans-text" disabled></textarea>
+                    <textarea class="ans-score" disabled></textarea>
+                    <button class="ans-reveal"></button>
+                </div>
+
+                <div class="ans" id="ans-2">
+                    <textarea class="ans-text" disabled></textarea>
+                    <textarea class="ans-score" disabled></textarea>
+                    <button class="ans-reveal"></button>
+                </div>
+
+                <div class="ans" id="ans-3">
+                    <textarea class="ans-text" disabled></textarea>
+                    <textarea class="ans-score" disabled></textarea>
+                    <button class="ans-reveal"></button>
+                </div>
+
+                <div class="ans" id="ans-4">
+                    <textarea class="ans-text" disabled></textarea>
+                    <textarea class="ans-score" disabled></textarea>
+                    <button class="ans-reveal"></button>
+                </div>
+
+                <div class="ans" id="ans-5">
+                    <textarea class="ans-text" disabled></textarea>
+                    <textarea class="ans-score" disabled></textarea>
+                    <button class="ans-reveal"></button>
+                </div>
+
+                <div class="ans" id="ans-6">
+                    <textarea class="ans-text" disabled></textarea>
+                    <textarea class="ans-score" disabled></textarea>
+                    <button class="ans-reveal"></button>
+                </div>
+
+                <div class="ans" id="ans-7">
+                    <textarea class="ans-text" disabled></textarea>
+                    <textarea class="ans-score" disabled></textarea>
+                    <button class="ans-reveal"></button>
+                </div>
+
+                <div class="ans" id="ans-8">
+                    <textarea class="ans-text" disabled></textarea>
+                    <textarea class="ans-score" disabled></textarea>
+                    <button class="ans-reveal"></button>
+                </div>
+
+                <button class="reveal-ans">Reveal</button>
+                <button class="reset-ans">Reset</button>
+
+                <button class="cross" id="cross-1">X</button>
+                <button class="cross" id="cross-2">XX</button>
+                <button class="cross" id="cross-3">XXX</button>
+
+                <label style="left:1%;top:85%;">Total:</label>
+                <textarea class="total-score" disabled></textarea>
+
+                <label style="left:1%;top:94%;">Add to Winning Team:</label>
+                <input type="checkbox" style="left:26%;top:94%;" id="is-adding-to-winning-team"></input>
+
+                <button id="h3-1-obj2">Team 1 Win</button>
+                <button id="h3-1-obj3">Team 2 Win</button> 
+
+                <label style="left:30%;top:94%;">Score Backdrop:</label>
+                <input type="checkbox" style="left:49%;top:94%;" id="score-backdrop"></input>
+            </div>
+
+            <div class="h3-hold" id="h3-hold-2">
+                <div class="br-ans" id="br-ans-1">
+                    <textarea class="br-question" id="br-question-1" disabled></textarea>
+
+                    <textarea class="br-ans-input" placeholder="Answer of Player 1" id="br-ans-input-1" style="top:0%;"></textarea>
+                    <textarea class="br-ans-input" placeholder="Answer of Player 2" id="br-ans-input-6" style="top:51%;"></textarea>
+
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-1" style="top:0%;"></textarea>
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-6" style="top:51%;"></textarea>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-1" style="top:0%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-1" style="top:0%;" disabled>X</button>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-6" style="top:51.5%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-6" style="top:51.5%;" disabled>X</button>
+                </div>
+
+                <div class="br-ans" id="br-ans-2">
+                    <textarea class="br-question" id="br-question-2" disabled></textarea>
+
+                    <textarea class="br-ans-input" placeholder="Answer of Player 1" id="br-ans-input-2" style="top:0%;"></textarea>
+                    <textarea class="br-ans-input" placeholder="Answer of Player 2" id="br-ans-input-7" style="top:51%;"></textarea>
+
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-2" style="top:0%;"></textarea>
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-7" style="top:51%;"></textarea>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-2" style="top:0%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-2" style="top:0%;" disabled>X</button>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-7" style="top:51.5%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-7" style="top:51.5%;" disabled>X</button>
+                </div>
+                
+                <div class="br-ans" id="br-ans-3">
+                    <textarea class="br-question" id="br-question-3" disabled></textarea>
+
+                    <textarea class="br-ans-input" placeholder="Answer of Player 1" id="br-ans-input-3" style="top:0%;"></textarea>
+                    <textarea class="br-ans-input" placeholder="Answer of Player 2" id="br-ans-input-8" style="top:51%;"></textarea>
+
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-3" style="top:0%;"></textarea>
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-8" style="top:51%;"></textarea>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-3" style="top:0%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-3" style="top:0%;" disabled>X</button>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-8" style="top:51.5%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-8" style="top:51.5%;" disabled>X</button>
+                </div>
+                
+                <div class="br-ans" id="br-ans-4">
+                    <textarea class="br-question" id="br-question-4" disabled></textarea>
+
+                    <textarea class="br-ans-input" placeholder="Answer of Player 1" id="br-ans-input-4" style="top:0%;"></textarea>
+                    <textarea class="br-ans-input" placeholder="Answer of Player 2" id="br-ans-input-9" style="top:51%;"></textarea>
+
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-4" style="top:0%;"></textarea>
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-9" style="top:51%;"></textarea>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-4" style="top:0%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-4" style="top:0%;" disabled>X</button>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-9" style="top:51.5%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-9" style="top:51.5%;" disabled>X</button>
+                </div>
+                
+                <div class="br-ans" id="br-ans-5">
+                    <textarea class="br-question" id="br-question-5" disabled></textarea>
+
+                    <textarea class="br-ans-input" placeholder="Answer of Player 1" id="br-ans-input-5" style="top:0%;"></textarea>
+                    <textarea class="br-ans-input" placeholder="Answer of Player 2" id="br-ans-input-10" style="top:51%;"></textarea>
+
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-5" style="top:0%;"></textarea>
+                    <textarea class="br-ans-score-input" placeholder="Score" id="br-ans-score-input-10" style="top:51%;"></textarea>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-5" style="top:0%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-5" style="top:0%;" disabled>X</button>
+                    
+                    <button class="br-ans-reveal" id="br-ans-reveal-10" style="top:51.5%;"></button>
+                    <button class="br-ans-hide" id="br-ans-hide-10" style="top:51.5%;" disabled>X</button>
+                </div>
+
+                <button class="timer" id="timer-20">20 Seconds</button>
+                <button class="timer" id="timer-25">25 Seconds</button>
+                <button class="reset-br">Reset</button>
+
+                <label style="left:1%;top:85%;">Total:</label>
+                <textarea class="total-score" disabled></textarea>
+            </div>
+        </div>
+
+        <div class="holder" id="holder-4">
+            <textarea class="camera-url-input" placeholder="Camera URL"></textarea>
+            <button class="camera-url-input-submit">Submit</button>
+
+            <iframe src="index.html" class="index-iframe"></iframe>
+        </div>
+
+        <div class="holder" id="holder-5">
+            <div class="h5-hold">
+                <label style="left:1%;top:2%;">Bonus Round Question:</label>
+                <button class="br-q-choose"></button>
+
+                <textarea class="br-q-text" disabled></textarea>
+    
+                <div class="br-right-ans" id="br-right-ans-1">
+                    <textarea class="br-ans-text" disabled></textarea>
+                    <textarea class="br-ans-score" disabled></textarea>
+                </div>
+    
+                <div class="br-right-ans" id="br-right-ans-2">
+                    <textarea class="br-ans-text" disabled></textarea>
+                    <textarea class="br-ans-score" disabled></textarea>
+                </div>
+    
+                <div class="br-right-ans" id="br-right-ans-3">
+                    <textarea class="br-ans-text" disabled></textarea>
+                    <textarea class="br-ans-score" disabled></textarea>
+                </div>
+    
+                <div class="br-right-ans" id="br-right-ans-4">
+                    <textarea class="br-ans-text" disabled></textarea>
+                    <textarea class="br-ans-score" disabled></textarea>
+                </div>
+    
+                <div class="br-right-ans" id="br-right-ans-5">
+                    <textarea class="br-ans-text" disabled></textarea>
+                    <textarea class="br-ans-score" disabled></textarea>
+                </div>
+    
+                <div class="br-right-ans" id="br-right-ans-6">
+                    <textarea class="br-ans-text" disabled></textarea>
+                    <textarea class="br-ans-score" disabled></textarea>
+                </div>
+    
+                <div class="br-right-ans" id="br-right-ans-7">
+                    <textarea class="br-ans-text" disabled></textarea>
+                    <textarea class="br-ans-score" disabled></textarea>
+                </div>
+    
+                <div class="br-right-ans" id="br-right-ans-8">
+                    <textarea class="br-ans-text" disabled></textarea>
+                    <textarea class="br-ans-score" disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

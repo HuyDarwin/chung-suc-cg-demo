@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'Aptos';
+    src: url('../Fonts/Aptos.woff2') format('woff2'),
+        url('../Fonts/Aptos.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SVN-Gotham';
+    src: url('../Fonts/SVN-Gotham.woff2') format('woff2'),
+        url('../Fonts/SVN-Gotham.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SVN-Gotham Bold';
+    src: url('../Fonts/SVN-GothamBold.woff2') format('woff2'),
+        url('../Fonts/SVN-GothamBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body {
+	overflow: hidden;
+}
+
+div, img, button, textarea, iframe, select, option, input, label, a, input, svg, text {
+	position:absolute;
+	margin:auto;
+}
+
+video {
+	position:absolute;
+	margin:auto;
+	top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:100%;
+}
+
+p {
+	margin:auto;
+	position:absolute;
+}
+
+table {
+	margin:auto;
+	position:absolute;
+}
+
+@keyframes reveal-ans{
+    0%{
+        transform: rotateX(180deg);
+        opacity: 0;
+    }
+    49%{
+        opacity:0;
+    }
+    50%{
+        transform: rotateX(90deg);
+        opacity:1;
+    }
+    100%{
+        transform: rotateX(0deg);
+        opacity:1;
+    }
+}
+
+@keyframes hide-ans{
+    0%{
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+    49%{
+        opacity:1;
+    }
+    50%{
+        transform: rotateX(90deg);
+        opacity:0;
+    }
+    100%{
+        transform: rotateX(180deg);
+        opacity:0;
+    }
+}
+
+@keyframes blink{
+    0%{
+        opacity: 1;
+    }
+    49%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes wipe-text{
+    0%{
+        opacity: 1;
+        width: 0;
+    }
+    100%{
+        opacity: 1;
+        width: 83.5%;
+    }
+}
+
+@keyframes reveal-iterator{
+    0%{
+        opacity:1;
+        filter:brightness(1000%);
+    }
+    100%{
+        opacity:1;
+        filter:brightness(100%);
+    }
+}
+
+@keyframes cross-pop{
+    0%{
+        transform: scale(1);
+    }
+    12.5%{
+        transform: scale(1.25);
+    }
+    25%{
+        transform: scale(1.1);
+    }
+    37.5%{
+        transform: scale(1.15);
+    }
+    50%{
+        transform: scale(1);
+    }
+}
+
+.reveal-ans-key{
+    animation: reveal-ans 1s;
+}
+
+.hide-ans-key{
+    animation: hide-ans 1s;
+}
+
+.blink-key{
+    animation: blink 1s;
+}
+
+.wipe-text-key{
+    animation: wipe-text 0.35s;
+}
+
+.reveal-iterator-key{
+    animation: reveal-iterator 0.125s;
+}
+
+.cross-pop-key{
+    animation: cross-pop 1s;
+}
